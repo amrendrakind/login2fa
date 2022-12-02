@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3> Dear <%= @user.email %>,<br></h3>  
+    <p>
+    Welcome to https://innovalabs.tech
+    
+      You have successfully signed up to https://innovalabs.tech,
+      your username is: <h4><%= @user.email %></h4>
+    </p>
+    <p>
+      To continue to the site, <%= @url %> just enter following OTP given below.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
