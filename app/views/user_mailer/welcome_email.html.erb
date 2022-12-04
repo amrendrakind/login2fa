@@ -12,8 +12,9 @@
       your username is: <h4><%= @user.email %></h4>
     </p>
     <p>
-      To continue to the site, <%= @url %> just enter following OTP given below.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+    To continue to the site, <%= @url %> just enter following OTP given below.<br>
+    OTP is <%= @user.last_otp %>
+  </p>
+  <p>Happy logging and have a great day!</p>
   </body>
 </html>

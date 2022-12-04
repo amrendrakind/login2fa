@@ -1,23 +1,21 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: %i[useremail create]
-  before_create :generate_otp
   # GET /users
   def index
     @users = User.all
-
-    render json: @users
+    render json: {id: @user.id, email: @user.email, created_at: @user.created_at, updated_at: @user.updated_at}
   end
 
   # GET /users/1
   def show
-    render json: @user
+    render json: {id: @user.id, email: @user.email, created_at: @user.created_at, updated_at: @user.updated_at}
   end
 
   #Authenticate user email id
 
   def useremail
     @user = User.find_by_email!(params[:email])
-    render json: @user
+    render json: {id: @user.id, email: @user.email, created_at: @user.created_at, updated_at: @user.updated_at}
   end
 
   # POST /users
@@ -25,27 +23,28 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.password = params[:password]
     @user.password_confirmation = params[:password_confirmation]
-
+    @user.otp_secret = ROTP::Base32.random
     if @user.save
-      render json: @user, status: :created
-      # Tell the UserMailer to send a welcome email after save
-    #  UserMailer.with(user: @user).welcome_email.deliver_now
-
+      render json: {id: @user.id, email: @user.email, created_at: @user.created_at, updated_at: @user.updated_at}, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
   end
 
-  private
-
-  def generate_otp
-    self.otp_secret = ROTP::Base32.random
-    p "OTP is "
-    puts @otp_secret
+  def verify_otp
+    @user = User.find_by_email!(params[:email])
+    totp = @user.last_otp
+    if totp.eql?params[:last_otp]
+      render json: { otp: 'verified' }
+    else
+      render json: { otp: 'Not verified' }
+    end
   end
+
+  private
 
   # Only allow a list of trusted parameters through.
     def user_params
-      params.fetch(:user, {}).permit(:email)
+      params.fetch(:user, {}).permit(:email, :last_otp)
     end
 end
