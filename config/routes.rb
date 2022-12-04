@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :users, only: [:index, :show, :destroy, :create]
 
-  post 'useremail', to: 'users#useremail'
   post 'authenticate', to: 'authentication#authenticate'
+  post 'useremail', to: 'users#useremail'
+  post 'verifyotp', to: 'users#verify_otp'
 end
