@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
   default from: 'notifications@example.com'
 
-  layout "mailer"
+  layout 'mailer'
 
   def welcome_email
     @user = params[:user]
