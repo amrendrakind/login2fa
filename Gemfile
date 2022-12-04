@@ -22,6 +22,8 @@ gem 'rack-cors'
 
 gem 'rotp'
 
+gem 'rubocop', '>= 1.0', '< 2.0'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
