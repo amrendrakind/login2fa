@@ -7,8 +7,8 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol
 config.action_mailer.smtp_settings = {
 :address => 'smtp.gmail.com',
 :port => 587,
-:user_name => 'vision2010',
-:password => 'yourpassword',
+:user_name => 'YourGmailUserName',
+:password => 'YourGmailPassword',
 :authentication => 'plain',
 :enable_starttls_auto => true
 }
