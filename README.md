@@ -16,7 +16,8 @@
 Coming Soon...
 
 ## Front-end App - Login Form ##
-[Login Form](https://github.com/amrendrakind/loginform_fe/tree/development)
+[Login Form](https://github.com/amrendrakind/loginform_fe)
+
 
 ## Getting Started
 
